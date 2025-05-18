@@ -35,16 +35,16 @@ reloj = pygame.time.Clock()
 
 fuenteGrande = pygame.font.Font('Pokemon GB.ttf', 40)
 fuenteMed = pygame.font.Font('Pokemon GB.ttf', 20) #defino la variable de fuente para no estar escribiendola a cada rato
-fuenteChik =  pygame.font.Font('Pokemon GB.ttf', 15)                                         #tiene tamanio y el tipo de fuente (lo de pokemon)
+fuenteChik =  pygame.font.Font('Pokemon GB.ttf', 15)                                         #tiene tamaño y el tipo de fuente (lo de pokemon)
 #Para dibujar texto
-def dibujaTexto(texto, fuente, colorTexto, x, y):#para dubijar texto
+def dibujaTexto(texto, fuente, colorTexto, x, y):#para dubujar texto
     img = fuente.render(texto, True, colorTexto) #crea el texto
     superficieVentana.blit(img, (x,y)) #lo dibuja en las coordenadas puestas de x y
 #----------------------------------------------------------------------------------------------------
 
 #-------------------------------Jugador y cosas del juego (declaraciones y correciones de formato)-------------------------------------------------
 
-jugador = pygame.Rect(296, 500, 120, 120) #ubicacion y tamanio del pj
+jugador = pygame.Rect(296, 500, 120, 120) #ubicacion y tamaño del pj
 ImagenJugador = pygame.image.load('mejorado3.png')
 ImagenScaleJuga = pygame.transform.scale(ImagenJugador, (120, 120))
 
@@ -119,7 +119,7 @@ def musica_fondo(flagMusica):#Funcion de cambio de musica
         pygame.mixer.music.play(-1)
         #pygame.mixer.music.set_volume(1.0)
         pygame.mixer.music.set_volume(0.2)
-        #pygame.mixer.music.set_volume(0.0) #esto es para ajustar el volumen 1.0 es lo mas alto y 0.0 lo mas bajo, OJO PONERLO EN  0.0 NO ES QUITAR EL AUDIO ES SEGUIR PONIENDOLO PERO AL VOLUMEN MAS BAJO 
+        #pygame.mixer.music.set_volume(0.0) #esto es para ajustar el volumen 1.0 es lo mas alto y 0.0 lo mas bajo 
 
 class Cpinguino(pygame.sprite.Sprite):#cosas personaje (de momento 1) 
     def __init__(self, x, y):
@@ -222,7 +222,7 @@ class Cfrutas(object):#cosas del cambur
         self.y = y
         self.f_type = f_type
         #self.hitbox = (self.x, self.y+10, 60, 60)
-        #codigo por si quieren añadirle un sonido de caida, el sonido apareceria cada vez que aparezca un cambur 
+        #codigo por si quiere añadir un sonido de caida, el sonido sale cada vez que aparezca un cambur 
         #self.sonido = pygame.mixer.Sound("sonido de caida.wav")
         #self.sonido.set_volume(0.01)
         #self.sonido.play()
@@ -349,8 +349,7 @@ def main():
     
     while play:
         
-        #NOSE
-        
+                
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                play = False 
@@ -359,11 +358,10 @@ def main():
                     pygame.quit()
                     sys.exit()
                     
-        #print(event) #IMPRIME LA POSICION DEL MOUSE CREO
         
-        #NOSE CREO QUE TIENE QUE VER CON LOS BOTONES
         
-#-----------------------------------nuevo que meti--------------------------------------------------------
+        
+#-------------------------------------------------------------------------------------------
         if botonJugar.collidepoint(pygame.mouse.get_pos())==0:
             superficieVentana.blit(menuprincipal,(1,1)) #coloco fondo de menu principal
         
@@ -382,7 +380,7 @@ def main():
             superficieVentana.blit(bJ,(193,366))
 #--------------------------------------------------------------------------------------------------
         
-        if apagoBotones == 0:#manera en como lo resolv///no se me salio lo de la funcion perdon...
+        if apagoBotones == 0:
             if cambioMusica == 0:
                 musica_fondo(flagMusica)
             cambioMusica = 1
@@ -399,7 +397,7 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:#si toca el boton de salir sale
                 if botonSalir.collidepoint(event.pos):#lo que esta dentro del () devuelve la posicion de solo la pestaña donde corre el juego  
                     pygame.quit()
-            if event.type == pygame.MOUSEBUTTONDOWN:#si toca el boton de juga empieza el juego y apaga la musica para poner otra
+            if event.type == pygame.MOUSEBUTTONDOWN:#si toca el boton de jugar empieza el juego y apaga la musica para poner otra
                 if botonJugar.collidepoint(event.pos):
                     #--------------------------------------------------------------------------------------------------
                     pygame.mixer.music.stop()
@@ -410,15 +408,12 @@ def main():
                     cambioMusica = 1
                     inicioJuego = 1
         
-        #POR ALGUNA RAZON AHORA EL JUEGO ESTA METIDO ADENTRO DE UN CONDICIONAL MAS            
+                  
         
         if inicioJuego == 1:#en 1 pq preciono el boton 
-            apagoBotones = 1 #ahora con 1 ya no me detecta los botones
+            apagoBotones = 1 
             #aca empieza el juego ---> OK
             if gameOver == False:
-                
-                #DEJAR DE PONER TODOS LOS PROCESOS PEGADOS QUE NO SE ENTIENDE MUY BIEN PORFA
-                
                 #MANEJA MOVIMIENTO
                 
                 pinguinito.handle_event(event)
@@ -517,7 +512,7 @@ def main():
                     f_starty = -200 #donde empiezan a caer las manzanas en la coordenadas de y 
                     f_type = 0 #por si queremos hacer rand
                     nuevaManzana = Cmanzana(f_startx, f_starty, f_type)
-                    manzanas.append(nuevaManzana) #para que spawneen
+                    manzanas.append(nuevaManzana) #para que salgan
                 
                 if sumadorFrutas == generacionFrutas:
                     sumadorFrutas = 0
@@ -635,7 +630,7 @@ def main():
                             sonido_toca_bomba.play()
                             gameOver = True
                 
-                #SUPONGO QUE ESTO ES EL PUNTAJE Y ALGO MAS
+
                 
                 dibujaTexto("Puntaje:"+str(puntaje),fuenteMed,"red", 10, 30)#muestra el puntaje 150 es la coor x
                 #pinguinito.draw(superficieVentana)
@@ -657,11 +652,11 @@ def main():
                 pygame.display.flip() #actualiza la pantalla dibujando todo
                 
                 
-            #LA VERDAD QUE NO HACIA FALTA METER TODO EN UN IF ELSE CREO
+
                 
             #GAME OVER
                 
-            else: #si el juegador pierde
+            else: #si el jugador pierde
                 if(holdFlag==1):
                     pygame.time.wait(500)
                     holdFlag=0
@@ -716,7 +711,7 @@ def main():
                     counter=60
                     gameOver = False
                     pinguinito = Cpinguino(ANCHOVENTANA * 0.35, ALTOVENTANA - 160) #posiciona al pinguino donde comenzo
-        #else: #----> PARA QUE EXISTE ESTE ELSE????
+        
             #print("Juego Cerrado")
         #-------------------------------------------------FIn ciclo del Juego---------------------------------------------
         pygame.display.flip()
